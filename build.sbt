@@ -1,8 +1,8 @@
 name := """aws-request-signer"""
 
-organization := "io.ticofab"
+organization := "alex1712"
 
-version := "0.5.0-SNAPSHOT"
+version := "0.5.0"
 
 licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
 
@@ -25,3 +25,10 @@ libraryDependencies ++= Seq(
 bintrayPackageLabels := Seq("scala", "aws")
 
 com.typesafe.sbt.SbtGit.versionWithGit
+
+
+publishArtifact := true
+
+bintrayOrganization := Some("alex1712")
+bintrayRepository := "maven"
+bintrayPackage := "aws-request-signer"
