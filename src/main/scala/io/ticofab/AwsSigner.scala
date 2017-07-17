@@ -124,14 +124,15 @@ class AwsSigner(credentialsProvider: AWSCredentialsProvider,
       Hex.encodeHexString(hmacSHA256(stringToSign, getSignatureKey(now, credentials)))
     }
 
-    def headerAsString(header: (String, Object), method: String): String =
+    def headerAsString(header: (String, Object), method: String): String = {
       if (header._1.equalsIgnoreCase(CONNECTION)) {
         CONNECTION + CLOSE
-      } else if (header._1.equalsIgnoreCase(CONTENT_LENGTH) && header._2.equals(ZERO) && method.equalsIgnoreCase("DELETE")) {
+      } else if (header._1.equalsIgnoreCase(CONTENT_LENGTH) && header._2.equals(ZERO)) {// && method.equalsIgnoreCase("DELETE")) {
         header._1.toLowerCase + ':'
       } else {
         header._1.toLowerCase + ':' + header._2
       }
+    }
 
     def getCredentialScope(now: LocalDateTime): String =
       now.format(BASIC_DATE_FORMATTER) + SLASH + region + SLASH + service + AWS4_REQUEST
